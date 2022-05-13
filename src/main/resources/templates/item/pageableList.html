@@ -5,6 +5,26 @@
 	<body>
 		<header th:insert="header_nav.html"></header>
 		<h1>아이템 리스트</h1>
+		<form action="/item/list/1">
+			<div class="input-group">
+			  <select name="sort" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+			    <option selected>정렬할 칼럼</option>
+			    <option value="itemNum">itemNum</option>
+			    <option value="name">name</option>
+			    <option value="title">title</option>
+			    <option value="price">price</option>
+
+			  </select>
+	
+			  <select name="desc" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+			    <option selected>정렬순서</option>
+	
+			    <option value="desc">큰거부터(desc)</option>
+			    <option value="asc">작은거부터(asc)</option>
+			  </select >
+			  <button class="btn btn-outline-primary" type="submit">Button</button>
+			</div>
+		</form>
 		<table class="table">
 			<thead>
 				<tr>
@@ -41,6 +61,7 @@
 			nowPage: <strong th:text="${itemList.number+1}"></strong>
 			hasNext: <strong th:text="${itemList.hasNext}"></strong>
 			hasPrev: <strong th:text="${itemList.hasPrevious}"></strong>
+			param.sort: <strong th:text="${param.sort}"></strong>
 
 		</p>
 		<!-- pageStart  pageEnd pageNow-->
@@ -49,7 +70,9 @@
 						hasNext=${itemList.hasNext}, 
 						hasPrev=${itemList.hasPrevious},
 						startPage=${((nowPage-3)<=0)?1:nowPage-3},
-						endPage=${((nowPage+3)>=totalPages)?totalPages:nowPage+3}
+						endPage=${((nowPage+3)>=totalPages)?totalPages:nowPage+3
+						
+						}
 						">
 			<nav th:insert="/pagination.html"></nav>					
 		<div>

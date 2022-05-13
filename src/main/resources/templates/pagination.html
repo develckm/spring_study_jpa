@@ -5,15 +5,15 @@
 	<nav aria-label="Page navigation example">
 	  <ul class="pagination justify-content-center">
 	    <li th:classappend="${!hasPrev}?'disabled'" class="page-item">
-	      <a class="page-link" th:href="@{./{page}(page=${nowPage-1})}" tabindex="-1">Previous</a>
+	      <a class="page-link" th:href="@{./{page}(page=${nowPage-1},sort=${param.sort},desc=${param.desc})}" tabindex="-1">Previous</a>
 	    </li>
 		<th:block th:each="page: ${#numbers.sequence(startPage,endPage)}">	
 	    	<li th:classappend="${nowPage==page}?'active'"  class="page-item">
-	    		<a class="page-link" th:href="@{./{page}(page=${page})}" th:text="${page}"></a>
+	    		<a class="page-link" th:href="@{./{page}(page=${page},sort=${param.sort},desc=${param.desc})}" th:text="${page}"></a>
 	    	</li>
 		</th:block>
 	    <li  th:classappend="${!hasNext}?'disabled'" class="page-item">
-	      <a class="page-link" th:href="@{./{page}(page=${nowPage+1})}">Next</a>
+	      <a class="page-link" th:href="@{./{page}(page=${nowPage+1},sort=${param.sort},desc=${param.desc})}">Next</a>
 	    </li>
 	  </ul>
 	</nav>
