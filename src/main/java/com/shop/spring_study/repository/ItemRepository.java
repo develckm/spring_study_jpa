@@ -1,5 +1,6 @@
 package com.shop.spring_study.repository;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,5 +14,8 @@ public interface ItemRepository extends CrudRepository<ItemVo, Integer>{
 	public Iterable<Object[]> findAllWithCategoryWithMember();
 	//ItemVo.member <=사용되지 않는다. 
 	//Iteralble<Object[ItemVo,MemberVo,CetegoryVo]>
-
+	
+	//sub query Join 이 아니라 진짜 join 을 하고 싶다면 @EntityGraph를 작성해야한다.
+	@EntityGraph(attributePaths = {"member","category"})
+	public Iterable<ItemVo> findAllByOrderByPostTime(); 
 }

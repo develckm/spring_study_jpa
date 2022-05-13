@@ -35,4 +35,11 @@ public class ItemController {
 //		}
 		return "/item/queryList";
 	}
+	@GetMapping("/entityGraphList.do")
+	public String entityGraphList(Model model) {
+		model.addAttribute("itemList", ir.findAllByOrderByPostTime());
+		//System.out.println(ir.findAllByOrderByPostTime());
+		return "/item/entityGraphList";
+	}
+	
 }
