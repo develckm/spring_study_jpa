@@ -32,9 +32,9 @@ public class MemberVo {
 	private String email;          
 	private String name;           
 	private String address;
-	@Column(name="addressDetail")
+	@Column(name="address_detail")
 	private String addressDetail; 
-	@Column(name="signupTime",nullable=true, insertable= false, updatable= false)
+	@Column(name="signup_time",nullable=true, insertable= false, updatable= false)
 	private	Date signupTime;
  // new simepleDateFomat("yyyy-MM-dd").parse("1986-05-24");
 	@DateTimeFormat(pattern="yyyy-MM-dd")

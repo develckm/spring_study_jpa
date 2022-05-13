@@ -1,0 +1,20 @@
+<htmllang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta carset="UTF-8">
+	</head>
+	<nav aria-label="Page navigation example">
+	  <ul class="pagination justify-content-center">
+	    <li th:classappend="${!hasPrev}?'disabled'" class="page-item">
+	      <a class="page-link" th:href="@{./{page}(page=${nowPage-1})}" tabindex="-1">Previous</a>
+	    </li>
+		<th:block th:each="page: ${#numbers.sequence(startPage,endPage)}">	
+	    	<li th:classappend="${nowPage==page}?'active'"  class="page-item">
+	    		<a class="page-link" th:href="@{./{page}(page=${page})}" th:text="${page}"></a>
+	    	</li>
+		</th:block>
+	    <li  th:classappend="${!hasNext}?'disabled'" class="page-item">
+	      <a class="page-link" th:href="@{./{page}(page=${nowPage+1})}">Next</a>
+	    </li>
+	  </ul>
+	</nav>
+</html>

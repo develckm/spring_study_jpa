@@ -13,15 +13,7 @@
 					<th>title</th>
 					<th>count</th>
 					<th>price</th>
-<!--					<th>color</th>
-					<th>main_img</th>
-					<th>detail_img</th>
-					<th>model_num</th>-->
 					<th>member_id(mem.name)</th>
-<!--					<th>post_time</th>
-					<th>sale_time</th>
-					<th>sale_end_time</th>
-					<th>state</th>-->
 					<th>cate_num(cate.cate_num)(sub)</th>
 				</tr>
 			</thead>
@@ -32,18 +24,10 @@
 					<td th:text="${item.title}"></td>					
 					<td th:text="${item.count}"></td>
 					<td th:text="${item.price}"></td>
-<!--					<td th:text="${item.color}"></td>
-					<td th:text="${item.mainImg}"></td>
-					<td th:text="${item.detailImg}"></td>
-					<td th:text="${item.modelNum}"></td>-->
 					<td>
 						<span th:text="${item.member?.id}"></span>
 						(<span th:text="${item.member?.name}"></span>)
 					</td>
-<!--					<td th:text="${item.postTime}"></td>
-					<td th:text="${item.saleTime}"></td>
-					<td th:text="${item.saleEndTime}"></td>
-					<td th:text="${item.state}"></td>-->
 					<td>
 						<span th:text="${item.cateNum}"></span>
 						(<span th:text="${item.category?.name}"></span>)
@@ -52,5 +36,22 @@
 				</tr>		
 			</tbody>
 		</table>
+		<p>
+			totalPages: <strong th:text="${itemList.totalPages}"></strong>,
+			nowPage: <strong th:text="${itemList.number+1}"></strong>
+			hasNext: <strong th:text="${itemList.hasNext}"></strong>
+			hasPrev: <strong th:text="${itemList.hasPrevious}"></strong>
+
+		</p>
+		<!-- pageStart  pageEnd pageNow-->
+		<div th:with="	totalPages=${itemList.totalPages}, 
+						nowPage=${itemList.number+1}, 
+						hasNext=${itemList.hasNext}, 
+						hasPrev=${itemList.hasPrevious},
+						startPage=${((nowPage-3)<=0)?1:nowPage-3},
+						endPage=${((nowPage+3)>=totalPages)?totalPages:nowPage+3}
+						">
+			<nav th:insert="/pagination.html"></nav>					
+		<div>
 	</body>
 </html>
