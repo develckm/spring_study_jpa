@@ -1,0 +1,39 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta carset="UTF-8">
+	</head>
+	<body>
+		<header th:insert="header_nav.html"></header>
+		<h1>아이템 리스트</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>item_num</th>
+					<th>name</th>
+					<th>title</th>
+					<th>count</th>
+					<th>price</th>
+					<th>member_id(mem.name)</th>
+					<th>cate_num(cate.cate_num)(sub)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="entitis:${itemList}">
+					<td th:text="${entitis[0].itemNum}"></td>
+					<td th:text="${entitis[0].name}"></td>
+					<td th:text="${entitis[0].title}"></td>					
+					<td th:text="${entitis[0].count}"></td>
+					<td th:text="${entitis[0].price}"></td>
+					<td>
+						<span th:text="${entitis[1]?.id}"></span>
+						(<span th:text="${entitis[1]?.name}"></span>)
+					</td>
+					<td>
+						(<span th:text="${entitis[2]?.name}"></span>)
+						(<span th:text="${entitis[2]?.sub}"></span>)
+					</td>
+				</tr>		
+			</tbody>
+		</table>
+	</body>
+</html>

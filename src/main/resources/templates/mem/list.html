@@ -1,0 +1,42 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta carset="UTF-8">
+	</head>
+	<body>
+		<!--jsp에 @include file="header_nav.html"와 같다.-->
+		<header th:insert="header_nav.html"></header>
+		<!--request.getAttribute("test")-->
+		<!--null 일때는 출력자체를 안한다(나누기 등 불가).-->
+		<h1>2022.05.11 맴버리스트</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>pw</th>
+					<th>phone</th>
+					<th>email</th>
+					<th>name</th>
+					<th>address</th>
+					<th>address_detail</th>
+					<th>signup_time</th>
+					<th>birth</th>
+					<th>grade</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="mem:${memList}">
+					<td th:text="${mem.id}"></td>
+					<td th:text="${mem.pw}"></td>
+					<td th:text="${mem.phone}"></td>					
+					<td th:text="${mem.email}"></td>
+					<td th:text="${mem.name}"></td>
+					<td th:text="${mem.address}"></td>
+					<td th:text="${mem.addressDetail}"></td>
+					<td th:text="${mem.signupTime}"></td>
+					<td th:text="${mem.birth}"></td>
+					<td th:text="${mem.grade}"></td>
+				</tr>		
+			</tbody>
+		</table>
+	</body>
+</html>

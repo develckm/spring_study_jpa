@@ -1,0 +1,25 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta carset="UTF-8">
+	</head>
+	<body>
+		<header th:insert="header_nav.html"></header>
+		<h1>카테고리 리스트</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>cate_num</th>
+					<th>name</th>
+					<th>sub</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cate:${cateList}">
+					<td th:text="${cate.cateNum}"></td>
+					<td th:text="${cate.name}"></td>
+					<td th:text="${cate.sub}"></td>					
+				</tr>		
+			</tbody>
+		</table>
+	</body>
+</html>

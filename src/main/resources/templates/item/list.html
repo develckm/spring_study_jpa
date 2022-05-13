@@ -1,0 +1,56 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta carset="UTF-8">
+	</head>
+	<body>
+		<header th:insert="header_nav.html"></header>
+		<h1>아이템 리스트</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>item_num</th>
+					<th>name</th>
+					<th>title</th>
+					<th>count</th>
+					<th>price</th>
+<!--					<th>color</th>
+					<th>main_img</th>
+					<th>detail_img</th>
+					<th>model_num</th>-->
+					<th>member_id(mem.name)</th>
+<!--					<th>post_time</th>
+					<th>sale_time</th>
+					<th>sale_end_time</th>
+					<th>state</th>-->
+					<th>cate_num(cate.cate_num)(sub)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item:${itemList}">
+					<td th:text="${item.itemNum}"></td>
+					<td th:text="${item.name}"></td>
+					<td th:text="${item.title}"></td>					
+					<td th:text="${item.count}"></td>
+					<td th:text="${item.price}"></td>
+<!--					<td th:text="${item.color}"></td>
+					<td th:text="${item.mainImg}"></td>
+					<td th:text="${item.detailImg}"></td>
+					<td th:text="${item.modelNum}"></td>-->
+					<td>
+						<span th:text="${item.member?.id}"></span>
+						(<span th:text="${item.member?.name}"></span>)
+					</td>
+<!--					<td th:text="${item.postTime}"></td>
+					<td th:text="${item.saleTime}"></td>
+					<td th:text="${item.saleEndTime}"></td>
+					<td th:text="${item.state}"></td>-->
+					<td>
+						<span th:text="${item.cateNum}"></span>
+						(<span th:text="${item.category?.name}"></span>)
+						(<span th:text="${item.category?.sub}"></span>)
+					</td>
+				</tr>		
+			</tbody>
+		</table>
+	</body>
+</html>
