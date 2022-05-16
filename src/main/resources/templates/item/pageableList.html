@@ -13,6 +13,7 @@
 			    <option value="name">name</option>
 			    <option value="title">title</option>
 			    <option value="price">price</option>
+			    <option value="postTime">postTime</option>
 
 			  </select>
 	
@@ -34,7 +35,8 @@
 					<th>count</th>
 					<th>price</th>
 					<th>member_id(mem.name)</th>
-					<th>cate_num(cate.cate_num)(sub)</th>
+					<th>cate_num(cate.cate_num)</th>
+					<th>commentList</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,10 +51,11 @@
 						(<span th:text="${item.member?.name}"></span>)
 					</td>
 					<td>
-						<span th:text="${item.cateNum}"></span>
-						(<span th:text="${item.category?.name}"></span>)
+						<span th:text="${item.category?.name}"></span>
 						(<span th:text="${item.category?.cateNum}"></span>)
 					</td>
+					<td th:text="${item.itemComment}"></td>
+					
 				</tr>		
 			</tbody>
 		</table>

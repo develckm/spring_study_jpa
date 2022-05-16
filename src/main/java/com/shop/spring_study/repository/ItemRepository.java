@@ -17,7 +17,7 @@ public interface ItemRepository extends CrudRepository<ItemVo, Integer>{
 	//ItemVo.member <=사용되지 않는다. 
 	//Iteralble<Object[ItemVo,MemberVo,CetegoryVo]>
 	
-	//sub query Join 이 아니라 진짜 join 을 하고 싶다면 @EntityGraph를 작성해야한다.
+	//sub query Join(fetch join) 이 아니라 진짜 join 을 하고 싶다면 @EntityGraph를 작성해야한다.
 	@EntityGraph(attributePaths = {"member","category"})
 	public Iterable<ItemVo> findAllByOrderByPostTime();
 

@@ -1,12 +1,14 @@
 package com.shop.spring_study.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -52,6 +54,17 @@ public class ItemVo {
 	 @JoinColumn(name="cate_num", insertable=false, updatable=false)
 //	 select item.cate_num, category.name from item left join category on item.cate_num=category.cate_num;
 	 private CategoryVo category;
+	 
+	 @OneToMany//fetch = FetchType.LAZY default
+	 @JoinColumn(name = "item_num", insertable=false, updatable=false)
+	 private List<ItemCommentVo> itemComment;
+	  
+	public List<ItemCommentVo> getItemComment() {
+		return itemComment;
+	}
+	public void setItemComment(List<ItemCommentVo> itemComment) {
+		this.itemComment = itemComment;
+	}
 	public MemberVo getMember() {
 		return member;
 	}
