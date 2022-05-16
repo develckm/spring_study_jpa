@@ -15,4 +15,6 @@ public interface ItemBasketRepository extends JpaRepository<ItemBasketVo, Intege
 	//unique 값으로 검사하면 오직 1개만 나온다.
 	//SELECT * FROM ITEM_BASKET WHERE member_id=? and item_num=?
 	public ItemBasketVo findByItemNumAndMemberId(int itemNum,String memberId);
+	
+	public long countByMemberId(String memberId);
 }

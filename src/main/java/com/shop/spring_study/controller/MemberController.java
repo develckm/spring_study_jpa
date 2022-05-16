@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.shop.spring_study.repository.ItemBasketRepository;
 import com.shop.spring_study.repository.MemberRepository;
 import com.shop.spring_study.vo.MemberVo;
 
@@ -26,6 +27,11 @@ public class MemberController {
 //	필요할때 스프링이 생성한 객체(컨테이너)를 주입(의존성 주입)
 	@Autowired
 	MemberRepository mr;
+	
+	@Autowired
+	ItemBasketRepository ibr;
+	
+	
 	@GetMapping("list.do")
 	public String list(Model model) {
 		Iterable<MemberVo> memList=mr.findAllByOrderByIdAsc();
@@ -49,8 +55,11 @@ public class MemberController {
 	public String login(String id, String pw, HttpSession session) { // 오버로딩 
 		System.out.println(id+"/"+pw);
 		MemberVo memVo=mr.findByIdAndPw(id, pw);
+		long basketCount=ibr.countByMemberId(id);
 		if(memVo!=null) {
 			session.setAttribute("memVo", memVo);
+			session.setAttribute("basketCount", basketCount);
+
 			return "redirect:/"; // response.sendRedirect("/")			
 		}else {
 			return "redirect:/mem/login";
