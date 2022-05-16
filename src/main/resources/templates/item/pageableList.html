@@ -34,9 +34,10 @@
 					<th>title</th>
 					<th>count</th>
 					<th>price</th>
-					<th>member_id(mem.name)</th>
-					<th>cate_num(cate.cate_num)</th>
-					<th>commentList</th>
+					<th>멤버</th>
+					<th>카테고리</th>
+					<!--<th>commentList</th>-->
+					<th>장바구니</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -54,7 +55,21 @@
 						<span th:text="${item.category?.name}"></span>
 						(<span th:text="${item.category?.cateNum}"></span>)
 					</td>
-					<td th:text="${item.itemComment}"></td>
+					<td>
+						<form action="/itemBasket/insert.do" method="post">
+							<input type="hidden" name="itemNum" th:value="${item.itemNum}">
+							<div class="input-group">
+							  <select class="form-select" name="count">
+							    <option selected value="1">1</option>
+							    <option value="2">2</option>
+							    <option value="3">3</option>
+							    <option value="4">4</option>
+							  </select>
+							  <button class="btn btn-outline-primary" type="submit">추가</button>
+							</div>
+						</form>
+					</td>
+					<!--<td th:text="${item.itemComment}"></td>-->
 					
 				</tr>		
 			</tbody>
