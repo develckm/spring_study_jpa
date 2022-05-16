@@ -1,6 +1,7 @@
 package com.shop.spring_study.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +17,9 @@ public interface ItemBasketRepository extends JpaRepository<ItemBasketVo, Intege
 	//SELECT * FROM ITEM_BASKET WHERE member_id=? and item_num=?
 	public ItemBasketVo findByItemNumAndMemberId(int itemNum,String memberId);
 	
-	public long countByMemberId(String memberId);
+	public int countByMemberId(String memberId);
+	
+	@Query("SELECT SUM(basket.count) FROM ItemBasketVo basket WHERE basket.memberId=?1")
+	public int sumCountByMemberId(String memberId);
+	
 }

@@ -55,10 +55,13 @@ public class MemberController {
 	public String login(String id, String pw, HttpSession session) { // 오버로딩 
 		System.out.println(id+"/"+pw);
 		MemberVo memVo=mr.findByIdAndPw(id, pw);
-		long basketCount=ibr.countByMemberId(id);
+		int basketCount=ibr.countByMemberId(id);
+		int basketCountSum=ibr.sumCountByMemberId(id);
+
 		if(memVo!=null) {
 			session.setAttribute("memVo", memVo);
 			session.setAttribute("basketCount", basketCount);
+			session.setAttribute("basketCountSum", basketCountSum);
 
 			return "redirect:/"; // response.sendRedirect("/")			
 		}else {
