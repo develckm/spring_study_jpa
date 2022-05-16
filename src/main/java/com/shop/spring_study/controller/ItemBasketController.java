@@ -45,10 +45,18 @@ public class ItemBasketController {
 		return "redirect:/itemBasket/list.do";
 	}
 	
-
-
-
-
+	@PostMapping("/update.do")
+	public String update(ItemBasketVo basketVo) {
+		//System.out.println(basketVo);
+		ibr.save(basketVo);
+		return "redirect:/itemBasket/list.do";
+	}
+	@PostMapping("/delete.do")
+	public String delete(ItemBasketVo basketVo) {
+		System.out.println(basketVo);
+		ibr.delete(basketVo);
+		return "redirect:/itemBasket/list.do";
+	}
 }
 
 
