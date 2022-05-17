@@ -37,6 +37,7 @@
 					<th>멤버</th>
 					<th>카테고리</th>
 					<!--<th>commentList</th>-->
+					<th>리뷰 </th>
 					<th>장바구니</th>
 				</tr>
 			</thead>
@@ -55,6 +56,7 @@
 						<span th:text="${item.category?.name}"></span>
 						(<span th:text="${item.category?.cateNum}"></span>)
 					</td>
+					<td th:text="${item.itemCommentCount}"></td>
 					<td>
 						<form action="/itemBasket/insert.do" method="post">
 							<input type="hidden" name="itemNum" th:value="${item.itemNum}">

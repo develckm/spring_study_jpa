@@ -19,6 +19,7 @@ public interface ItemBasketRepository extends JpaRepository<ItemBasketVo, Intege
 	
 	//없으면 0이 아니라 null이 나와서 참조형으로 return 
 	public Integer countByMemberId(String memberId);
+
 	
 	@Query("SELECT SUM(basket.count) FROM ItemBasketVo basket WHERE basket.memberId=?1")
 	public Integer sumCountByMemberId(String memberId);

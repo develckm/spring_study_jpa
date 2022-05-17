@@ -3,6 +3,7 @@ package com.shop.spring_study.vo;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
 
 // jpa의 필드를 낙타표기법을 사용해야 메소드로 쿼리를 제작할 수 있다.
@@ -58,7 +60,17 @@ public class ItemVo {
 	 @OneToMany//fetch = FetchType.LAZY default
 	 @JoinColumn(name = "item_num", insertable=false, updatable=false)
 	 private List<ItemCommentVo> itemComment;
+	 //subquery 작성법
+	 @Formula(value = "(SELECT COUNT(c.comment_num) FROM item_comment c WHERE c.item_num=item_num)")
+	 private Integer itemCommentCount;
+	 
 	  
+	public Integer getItemCommentCount() {
+		return itemCommentCount;
+	}
+	public void setItemCommentCount(Integer itemCommentCount) {
+		this.itemCommentCount = itemCommentCount;
+	}
 	public List<ItemCommentVo> getItemComment() {
 		return itemComment;
 	}
