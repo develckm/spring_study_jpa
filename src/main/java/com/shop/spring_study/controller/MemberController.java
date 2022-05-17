@@ -32,7 +32,7 @@ public class MemberController {
 	ItemBasketRepository ibr;
 	
 	
-	@GetMapping("list.do")
+	@GetMapping("/admin/list.do")
 	public String list(Model model) {
 		Iterable<MemberVo> memList=mr.findAllByOrderByIdAsc();
 		model.addAttribute("memList",memList);
@@ -55,8 +55,8 @@ public class MemberController {
 	public String login(String id, String pw, HttpSession session) { // 오버로딩 
 		System.out.println(id+"/"+pw);
 		MemberVo memVo=mr.findByIdAndPw(id, pw);
-		int basketCount=ibr.countByMemberId(id);
-		int basketCountSum=ibr.sumCountByMemberId(id);
+		Integer basketCount=ibr.countByMemberId(id);
+		Integer basketCountSum=ibr.sumCountByMemberId(id);
 
 		if(memVo!=null) {
 			session.setAttribute("memVo", memVo);
@@ -92,7 +92,7 @@ public class MemberController {
 			session.setAttribute("msg", "Email 또는 Phone이 이미 존재합니다.");
 		}
 		if(insert) {
-			return "redirect:/mem/list.do";			
+			return "redirect:/";			
 		}else {
 			return "redirect:/mem/signup";
 		}

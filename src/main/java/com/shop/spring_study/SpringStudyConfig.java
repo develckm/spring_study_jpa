@@ -13,6 +13,20 @@ public class SpringStudyConfig implements WebMvcConfigurer{
 	LoginInterceptor loginInterceptor;
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
+		registry.addInterceptor(loginInterceptor)
+		.addPathPatterns("/**")
+		.excludePathPatterns("/")
+		.excludePathPatterns("/mem/login")
+		.excludePathPatterns("/mem/signup")
+		.excludePathPatterns("/public/**")
+		.excludePathPatterns("/mem/ajax/**")
+		.excludePathPatterns("/item/list/**");
 	}
 }
+
+
+
+
+
+
+
