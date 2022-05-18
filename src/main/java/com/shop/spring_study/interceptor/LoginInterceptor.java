@@ -32,12 +32,4 @@ public class LoginInterceptor implements HandlerInterceptor{
 
 		
 	}
-	@Override//view 처리가 끝이나고 
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
-		System.out.println("afterCompletion :"+request.getServletPath());
-		response.getWriter().append("<script>console.log('afterCompletion')</script>");
-		response.getWriter().flush();
-		response.getWriter().close();
-	}
 }
