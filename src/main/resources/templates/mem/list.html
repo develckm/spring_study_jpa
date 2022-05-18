@@ -21,6 +21,10 @@
 					<th>signup_time</th>
 					<th>birth</th>
 					<th>grade</th>
+					<!--<th>itemBasket(list)</th>-->
+					<th>(장바구니 수)</th>
+					<th>(장바구니 아이템 수)</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -35,6 +39,11 @@
 					<td th:text="${mem.signupTime}"></td>
 					<td th:text="${mem.birth}"></td>
 					<td th:text="${mem.grade}"></td>
+					<!--<td th:text="${mem.itemBasket}"></td>-->
+					<td th:text="${mem.basketCount}"></td>
+					<td th:text="${mem.basketCountSum}"></td>
+
+					
 				</tr>		
 			</tbody>
 		</table>

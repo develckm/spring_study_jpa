@@ -3,12 +3,17 @@ package com.shop.spring_study.vo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
 // Entity를 설정해야 jpa가 db와 세트로 인지한다.
 // Table=member
@@ -40,6 +45,36 @@ public class MemberVo {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birth;          
 	private byte grade;
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "member_id",insertable = false,updatable = false)
+	private List <ItemBasketVo> itemBasket; 
+	
+	@Formula(value = "(SELECT COUNT(b.count) FROM item_basket b WHERE b.member_id=id)")//subquery
+	Integer basketCount;
+	
+	@Formula(value = "(SELECT SUM(b.count) FROM item_basket b WHERE b.member_id=id)")
+	Integer basketCountSum;
+
+	
+	public Integer getBasketCountSum() {
+		return basketCountSum;
+	}
+	public void setBasketCountSum(Integer basketCountSum) {
+		this.basketCountSum = basketCountSum;
+	}
+	public Integer getBasketCount() {
+		return basketCount;
+	}
+	public void setBasketCount(Integer basketCount) {
+		this.basketCount = basketCount;
+	}
+	public List<ItemBasketVo> getItemBasket() {
+		return itemBasket;
+	}
+	public void setItemBasket(List<ItemBasketVo> itemBasket) {
+		this.itemBasket = itemBasket;
+	}
 	public String getId() {
 		return id;
 	}
