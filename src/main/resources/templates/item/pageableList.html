@@ -28,7 +28,8 @@
 		</form>
 		<table class="table">
 			<thead>
-				<tr>
+				<tr>	
+					<th>img</th>
 					<th>item_num</th>
 					<th>name</th>
 					<th>title</th>
@@ -43,6 +44,9 @@
 			</thead>
 			<tbody>
 				<tr th:each="item:${itemList}">
+					<td>
+						<img th:src="@{/public/img/thubm/{img}(img=${item.mainImg})}">
+					</td>
 					<td th:text="${item.itemNum}"></td>
 					<td th:text="${item.name}"></td>
 					<td th:text="${item.title}"></td>					

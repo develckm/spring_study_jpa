@@ -138,12 +138,10 @@ public class MemberVo {
 	}
 	@Override
 	public String toString() {
-		return "MemberVo={\"id\": \"" + id + "\", \"pw\": \"" + pw
-				+ "\", \"phone\": \"" + phone + "\", \"email\": \"" + email
-				+ "\", \"name\": \"" + name + "\", \"address\": \"" + address
-				+ "\", \"addressDetail\": \"" + addressDetail
-				+ "\", \"signupTime\": \"" + signupTime + "\", \"birth\": \""
-				+ birth + "\", \"grade\": \"" + grade + "\"}";
-	}          
+		return "MemberVo [id=" + id + ", pw=" + pw + ", phone=" + phone + ", email=" + email + ", name=" + name
+				+ ", address=" + address + ", addressDetail=" + addressDetail + ", signupTime=" + signupTime
+				+ ", birth=" + birth + ", grade=" + grade + ", itemBasket=" + itemBasket + ", basketCount="
+				+ basketCount + ", basketCountSum=" + basketCountSum + "]";
+	}
 	
 }

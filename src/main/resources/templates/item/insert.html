@@ -1,0 +1,77 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>아이템 등록</title>
+</head>
+<body>
+	<header th:insert="header_nav.html"></header>
+	<div class="container-lg">
+		<blockquote class="blockquote">
+			<h1 class="h1">아이템 등록</h1>
+		</blockquote>
+		  	
+	  	<form action="/item/seller/insert.do" method="post" name="itemForm" enctype="multipart/form-data">
+	  		<p class="input-group">
+			  <label for="itemFormName" class="input-group-text">상품이름</label>
+			  <input name="name" type="text" class="form-control" id="itemFormName" value="광 마우스">
+			</p>
+	  		<p class="input-group">
+			  <label for="itemFormTitle" class="input-group-text">게시타이틀</label>
+			  <input name="title" type="text" class="form-control" id="itemFormTitle" value="게이밍 광 마우스 짱짱맨">
+			</p>
+	  		<p class="input-group">
+			  <label for="itemFormModelNum" class="input-group-text">상품모델</label>
+			  <input name="modelNum" type="text" class="form-control" id="itemFormModelNum" value="MX1322F3">
+			</p>
+	  		<p class="input-group">
+			  <label for="itemFormMemberId" class="input-group-text">게시자</label>
+			  <input name="memberId" type="text" class="form-control" id="itemFormMemberId"th:value="${session.memVo.id}" readonly>
+			</p>
+	  		<p class="input-group">
+			  <label for="itemFormPrice" class="input-group-text">상품가격</label>
+			  <input name="price" type="number" class="form-control" id="itemFormPrice" value="20000" >
+			</p>
+			<p class="input-group">
+			  <label for="itemFormCateNum" class="input-group-text">카테고리</label>
+			  <select name="cateNum" class="form-control" id="itemFormCateNum" >
+			  	<option value="1">가전</option>
+		  		<option value="2">컴퓨터</option>
+			  </select>
+			</p>
+			
+	  		<p class="input-group">
+			  <label for="itemFormMainImg" class="input-group-text">상품메인이미지</label>
+			  <input name="mainImgFile" type="file" class="form-control" id="itemFormMainImg" value="" multiple="multiple">
+			</p>
+	  		<p class="input-group">
+			  <label for="itemFormDetailImg" class="input-group-text">상품상세이미지</label>
+			  <input name="detailImgFile" type="file" class="form-control" id="itemFormDetailImg" value="" multiple="multiple">
+			</p>
+	  		<p class="input-group">
+			  <label for="itemFormSaleTime" class="input-group-text">상품판매시작일</label>
+			  <input name="saleTime" type="datetime-local" class="form-control" id="itemFormSaleTime" value="">
+			</p>
+	  		<p class="input-group">
+			  <label for="itemFormSaleEndTime" class="input-group-text">상품판매종료일</label>
+			  <input name="saleEndTime" type="datetime-local" class="form-control" id="itemFormSaleEndTime" value="">
+			</p>
+	  	
+	  		<p class="input-group">
+		  		<label for="itemFormColor" class="input-group-text">상품색</label>
+				<input name="color" type="color" class="form-control form-control-color" id="itemFormColor" value="#563d7c" title="Choose your color">
+	  			<label for="itemFormState" class="input-group-text">상태</label>
+	  			<select name="state" id="itemFormState" class="form-control">
+	  				<option value="0" selected>공개</option>
+	  				<option value="1">비공개</option>
+	  			</select>
+	  			<label for="itemFormCount" class="input-group-text">판매수</label>
+	  			<input name="count" id="itemFormCount" type="number" class="form-control" value="100">
+	  		</p>
+	  		<p class="d-grid gap-2 d-md-flex justify-content-md-end">
+	  			<button class="btn btn-outline-warning " type="reset">리셋</button>
+	  			<button class="btn btn-outline-primary " type="submit">등록</button>
+	  		</p>
+	  	</form>
+	  </div>
+	</body>
+</html>

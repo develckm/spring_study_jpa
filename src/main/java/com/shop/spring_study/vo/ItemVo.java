@@ -7,6 +7,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -22,7 +24,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class ItemVo {
 	@Id
 	@Column(name="item_num")
-	 private int itemNum;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	 private Integer itemNum;
 	 private String name;
 	 private String title;
 	 private int count;
@@ -37,12 +40,14 @@ public class ItemVo {
 	 @Column(name="member_id")
 	 private String memberId; //(member.member_id)
 	 @DateTimeFormat(pattern="yyyy-MM-dd")
-	 @Column(name="post_time")
+	 @Column(name="post_time", insertable =false,updatable = false)
 	 private Date postTime;
-	 @DateTimeFormat(pattern="yyyy-MM-dd")
+
+	 //'2022-05-19T14:23'
+	 @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	 @Column(name="sale_time")
 	 private Date saleTime;
-	 @DateTimeFormat(pattern="yyyy-MM-dd")
+	 @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	 @Column(name="sale_end_time")
 	 private Date saleEndTime;
 	 private byte state;
@@ -89,10 +94,10 @@ public class ItemVo {
 	public void setCategory(CategoryVo category) {
 		this.category = category;
 	}
-	public int getItemNum() {
+	public Integer getItemNum() {
 		return itemNum;
 	}
-	public void setItemNum(int itemNum) {
+	public void setItemNum(Integer itemNum) {
 		this.itemNum = itemNum;
 	}
 	public String getName() {
